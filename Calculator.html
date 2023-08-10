@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/Users/divyanshkumar/Documents/Web Dev/CSS/Calculator.css"> -->
+    <style>
+        .navbar {
+    background-color: rgb(31, 31, 31);
+}
+
+.navbar a {
+    color: white;
+}
+
+body {
+    background-color: rgb(31, 31, 31);
+}
+
+button:not(.sign) {
+    background-color: rgb(92, 92, 92);
+    color: rgb(255, 255, 255);
+}
+button{
+    height:3.25rem;
+    width: 3.25rem;
+    border-radius:25px;
+    padding:0;
+    box-shadow: none;
+    text-decoration: none;
+}
+button:hover{
+    cursor: pointer;
+}
+
+input {
+    height: 3.25rem;
+    font-size: large;
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    box-shadow: 5px;
+}
+
+div .sign {
+    background-color: rgb(242, 163, 60);
+    color: rgb(255, 241, 226);
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">Calculator</a>
+        </div>
+    </nav>
+    <div class="d-flex justify-content-center mt-5">
+        <input type="text" id="display" disabled>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="continertext text-center">
+            <div class="row">
+                <div class="col-16">
+                    <button class="num" onclick="appendToDisplay('1')">1</button>
+                    <button class="num" onclick="appendToDisplay('2')">2</button>
+                    <button class="num" onclick="appendToDisplay('3')">3</button>
+                    <button onclick="removeLastInput()" class="sign">⌫</button>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-16">
+
+                    <button class="num" onclick="appendToDisplay('4')">4</button>
+                    <button class="num" onclick="appendToDisplay('5')">5</button>
+                    <button class="num" onclick="appendToDisplay('6')">6</button>
+                    <button onclick="appendToDisplay('-')" class="sign">-</button>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-16">
+
+                    <button class="num" onclick="appendToDisplay('7')">7</button>
+                    <button class="num" onclick="appendToDisplay('8')">8</button>
+                    <button class="num" onclick="appendToDisplay('9')">9</button>
+                    <button onclick="appendToDisplay('*')" class="sign">×</button>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-16">
+
+                    <button class="num" onclick="appendToDisplay('0')">0</button>
+                    <button class="num" onclick="appendToDisplay('/')" class="sign">÷</button>
+                    <button class="num" onclick="appendToDisplay('%')" class="sign">%</button>
+                    <button onclick="appendToDisplay('+')" class="sign">+</button>
+     
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-16">
+
+                    <button onclick="clearDisplay()" class="sign">AC</button>
+                    <button onclick="calculateLog()" class="sign">ln</button>
+                    <button onclick="calculateBase10Log()" class="sign">Log</button>
+                    <button onclick="calculate()" class="sign">=</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- <script src="/Users/divyanshkumar/Documents/Web Dev/JavaScript/calci.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script>
+        function appendToDisplay(value) {
+                document.getElementById('display').value += value;
+            }
+
+            function clearDisplay() {
+                document.getElementById('display').value = '';
+            }
+
+            function removeLastInput() {
+                const display = document.getElementById('display');
+                display.value = display.value.slice(0, -1);
+            }
+            function calculateLog() {
+                try {
+                    const result = Math.log(document.getElementById('display').value);
+                    document.getElementById('display').value = result;
+                } catch (error) {
+                    document.getElementById('display').value = 'Error';
+                }
+            }
+            function calculateBase10Log() {
+                try {
+                    const result = Math.log10(document.getElementById('display').value);
+                    document.getElementById('display').value = result;
+                } catch (error) {
+                    document.getElementById('display').value = 'Error'
+                }
+            }
+
+            function calculate() {
+                try {
+                    const result = eval(document.getElementById('display').value);
+                    document.getElementById('display').value = result;
+                } catch (error) {
+                    document.getElementById('display').value = 'Error';
+                }
+            }
+
+    </script>
+</body>
+
+</html>
